@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 
 import './options_manager.dart';
 import 'package:geolocator/geolocator.dart';
+import './login_sqlite.dart';
 
 Future<void> main() async {
   // Ensure that plugin services are initialized so that `availableCameras()`
@@ -155,7 +156,7 @@ class DisplayPictureScreen extends StatelessWidget {
           ),
   
         ),   
- Container(
+ /*Container(
    child:  FloatingActionButton(
       onPressed: ()async {
        position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
@@ -165,9 +166,12 @@ class DisplayPictureScreen extends StatelessWidget {
       backgroundColor: Colors.green,
     ),
     
-  ),
+  ),*/
   Container(
-          child : RaisedButton(onPressed: (){},
+          child : RaisedButton(onPressed: ()async {
+            position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginViaSqLite()));
+          },
           child: Text('Submit'),
           ) 
           ),
